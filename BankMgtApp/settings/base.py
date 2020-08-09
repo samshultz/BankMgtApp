@@ -1,7 +1,7 @@
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR =os.path.dirname(os.path.dirname(os.path.abspath(os.path.join(__file__, os.pardir))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(os.path.join(__file__, os.pardir))))
 
 
 
@@ -35,10 +35,17 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
+    ## My apps
+    'bankapp',
+
     ## Django allauth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    'widget_tweaks',
+
+
 ]
 
 MIDDLEWARE = [
@@ -123,6 +130,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 SITE_ID = 1
 
