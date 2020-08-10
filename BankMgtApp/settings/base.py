@@ -83,16 +83,7 @@ WSGI_APPLICATION = 'BankMgtApp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'bankapp',
-	'USER': 'samshultz',
-	'PASSWORD': 'reductionism',
-	'HOST': 'localhost',
-	'PORT': '',
-    }
-}
+
 
 
 # Password validation
@@ -158,3 +149,4 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-outline-warning', 
     messages.ERROR: 'alert-outline-danger', 
 }
+
