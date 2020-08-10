@@ -23,6 +23,17 @@
     {% endblock header %}
 
     <div id="appCapsule">
+	       {% if messages %}
+           {% for message in messages %}
+              <div class="alert {{ message.tags }} mb-1 alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+              {{ message }}
+                </div>
+                {% endfor %}
+             </ul>
+           </div>
+         {% endif %}
+
 
         {% block body %}
           

@@ -34,6 +34,19 @@
     <h4>Fill the form to register</h4>
 </div>
 <div class="section mt-2 mb-5 p-3">
+        {% if form.errors %} 
+            {% for field in form %} 
+                {% for error in field.errors %} 
+                    <div class="alert alert-outline-danger mb-1"> 
+                        <strong>{{ error|escape }}</strong> </div> 
+                {% endfor %} 
+            {% endfor %} 
+            {% for error in form.non_field_errors %} 
+                <div class="alert alert-outline-danger mb-1"> 
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %} 
+        {% endif %}
     <form method="post" action="{% url 'account_signup' %}">
         {% csrf_token %}
         <div class="form-group basic">

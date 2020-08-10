@@ -1,4 +1,5 @@
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(os.path.join(__file__, os.pardir))))
@@ -148,3 +149,12 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 200
 ACCOUNT_USERNAME_MIN_LENGTH = 6
+
+# Messages settings
+MESSAGE_TAGS = { 
+    messages.DEBUG: 'alert-outline-info', 
+    messages.INFO: 'alert-outline-info',                         
+    messages.SUCCESS: 'alert-outline-success', 
+    messages.WARNING: 'alert-outline-warning', 
+    messages.ERROR: 'alert-outline-danger', 
+}
