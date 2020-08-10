@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load account %}
+
+{% block title %}
+  {{ block.super }} - Please Confirm your Email
+{% endblock title %}
+
+{% block header %}
+  <!-- App Header -->
+  <div class="appHeader">
+    <div class="left">
+        <a href="javascript:;" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">E-mail Confirmation</div>
+    <div class="right"></div>
+</div>
+<!-- * App Header -->
+{% endblock header %}
+
+{% block body %}
+<div class="section inset mt-3">
+    <div class="wide-block pt-2 pb-2">
+        <div class="content-header mb-05">Confirm E-mail Address</div>
+        {% if confirmation %}
+            {% user_display confirmation.email_address.user as user_display %}
+            Please confirm that <a href="mailto:{{ confirmation.email_address.email }}">{{ confirmation.email_address.email }}</a> is an e-mail address for user {{ user_display }}.
+            <div class="content-footer mt-05 text-center">
+                <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </form>
+            </div>
+        {% else %}
+            {% url 'account_email' as email_url %}
+
+            This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.
+            
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}
