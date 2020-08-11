@@ -5,6 +5,7 @@ colorama==0.4.3
 defusedxml==0.6.0
 Django==2.2.14
 django-allauth==0.42.0
+django-allauth-2fa==0.8
 django-cleanup==5.0.0
 django-extensions==3.0.3
 django-formtools==2.2
