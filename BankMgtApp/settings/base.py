@@ -44,6 +44,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    # Configure the django-otp package.
+    'django_otp',
+    'django_otp.plugins.otp_totp',
+    'django_otp.plugins.otp_static',
+
+    # Enable two-factor auth.
+    'allauth_2fa',
     'widget_tweaks',
 
 
@@ -55,8 +62,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth_2fa.middleware.AllauthTwoFactorMiddleware',
 ]
 
 ROOT_URLCONF = 'BankMgtApp.urls'
@@ -145,6 +154,9 @@ ACCOUNT_FORMS = {
     'signup': 'bankapp.forms.CustomSignupForm',
 }
 
+# Set the allauth adapter to be the 2FA adapter.
+ACCOUNT_ADAPTER = 'allauth_2fa.adapter.OTPAdapter'
+
 # Messages settings
 MESSAGE_TAGS = { 
     messages.DEBUG: 'alert-outline-info', 
@@ -154,3 +166,4 @@ MESSAGE_TAGS = {
     messages.ERROR: 'alert-outline-danger', 
 }
 
+# LOGIN_URL = 'two_factor:login'
