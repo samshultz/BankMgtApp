@@ -52,7 +52,34 @@
         <div class="form-group basic">
             <div class="input-wrapper">
                 <label class="label" for="email1">E-mail</label>
-                {% render_field form.email|add_class:"form-control" id="email1" placeholder="Your e-mail" %}
+                {% render_field form.email|add_class:"form-control" id="email1" autofocus="autofocus" placeholder="Your e-mail" %}
+                <i class="clear-input">
+                    <ion-icon name="close-circle"></ion-icon>
+                </i>
+            </div>
+        </div>
+        <div class="form-group basic">
+            <div class="input-wrapper">
+                <label class="label" for="firstname1">First Name</label>
+                {% render_field form.first_name|add_class:"form-control" id="firstname1" placeholder="Your FirstName" %}
+                <i class="clear-input">
+                    <ion-icon name="close-circle"></ion-icon>
+                </i>
+            </div>
+        </div>
+        <div class="form-group basic">
+            <div class="input-wrapper">
+                <label class="label" for="lastname1">Last Name</label>
+                {% render_field form.last_name|add_class:"form-control" id="lastname1" placeholder="Your LastName" %}
+                <i class="clear-input">
+                    <ion-icon name="close-circle"></ion-icon>
+                </i>
+            </div>
+        </div>
+        <div class="form-group basic">
+            <div class="input-wrapper">
+                <label class="label" for="middlename1">Middle Name</label>
+                {% render_field form.middle_name|add_class:"form-control" id="middlename1" placeholder="Your Middle Name(Optional)" %}
                 <i class="clear-input">
                     <ion-icon name="close-circle"></ion-icon>
                 </i>

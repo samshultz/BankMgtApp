@@ -141,6 +141,10 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 200
 ACCOUNT_USERNAME_MIN_LENGTH = 6
 
+ACCOUNT_FORMS = {
+    'signup': 'bankapp.forms.CustomSignupForm',
+}
+
 # Messages settings
 MESSAGE_TAGS = { 
     messages.DEBUG: 'alert-outline-info', 
