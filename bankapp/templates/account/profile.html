@@ -104,7 +104,7 @@
 <div class="listview-title mt-1">Security</div>
 <ul class="listview image-listview text mb-2">
     <li>
-        <a href="#" class="item">
+        <a href="{% url 'account_change_password' %}" data-toggle="modal" data-target="#passwordChangeForm" class="item">
             <div class="in">
                 <div>Update Password</div>
             </div>
@@ -134,4 +134,5 @@
 
 {% include "../bankapp/partials/__bottom_menu.html" %}
 {% include "../bankapp/partials/__sidebar.html" %}
+{% include "./partials/__accessPullUp.html" with form=form only %}
 {% endblock body %}

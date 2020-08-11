@@ -1,0 +1,45 @@
+{% load widget_tweaks %}
+<!-- Form Action Sheet -->
+<div class="modal fade action-sheet" id="passwordChangeForm" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Password Change</h5>
+            </div>
+            <div class="modal-body">
+                <div class="action-sheet-content">
+                    <form method="POST" action="{% url 'account_change_password' %}" class="password_change">
+                        {% csrf_token %}
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="oldpassword">Current Password</label>
+                                {% render_field form.oldpassword|add_class:"form-control" id="oldpassword" placeholder="Enter your current password..." %}
+                                <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="password1">New Password</label>
+                                {% render_field form.password1|add_class:"form-control" id="password1" placeholder="New password" %}
+                                <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
+                            </div>
+                            <div class="input-info">Your password must be atleast 8 characters.</div>
+                        </div>
+                        <div class="form-group basic">
+                            <div class="input-wrapper">
+                                <label class="label" for="password2">Confirm New Password</label>
+                                {% render_field form.password2|add_class:"form-control" id="password2" placeholder="Confirm New password" %}
+                                <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
+                            </div>
+                        </div>
+                        <div class="form-group basic">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">Change Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * Form Action Sheet -->
