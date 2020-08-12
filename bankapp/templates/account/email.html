@@ -1,0 +1,82 @@
+{% extends "base.html" %} 
+{% load widget_tweaks %}
+
+{% block title %}E-mail Addresses{% endblock title %}
+
+{% block header %}
+
+    <!-- App Header -->
+    <div class="appHeader no-border">
+        <div class="left">
+            <a href="javascript:;" class="headerButton goBack">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="pageTitle">Email Address </div>
+        <div class="right">
+        </div>
+    </div>
+    <!-- * App Header -->
+{% endblock header %}
+{% block body %}
+    {% if user.emailaddress_set.all %}
+      
+        <div class="section mt-2 text-center">
+            <h4>This is the current e-mail address associated with your account:</h4>
+        </div>
+        <div class="section mt-2 mb-5 p-3">
+        <form action="{% url 'account_email' %}" class="email_list" method="post">
+            {% csrf_token %}
+            <fieldset class="blockLabels"> 
+                {% for emailaddress in user.emailaddress_set.all %}
+                <div class="ctrlHolder"> 
+                    <label for="email_radio_{{forloop.counter}}" class="{% if emailaddress.primary %}primary_email{% endif %}"> 
+                    <input id="email_radio_{{forloop.counter}}" type="radio" name="email" {% if emailaddress.primary or user.emailaddress_set.count == 1 %}checked="checked"{%endif %} value="{{emailaddress.email}}"/> 
+                    {{ emailaddress.email }} 
+                    {% if emailaddress.verified %} 
+                        <span class="badge badge-success verified">Verified</span> 
+                    {% else %} 
+                        <span class="badge badge-danger unverified">Unverified</span> 
+                    {% endif %} 
+                    </div> 
+                 {% endfor %} 
+                 <div class="buttonHolder"> 
+                     <button class="secondaryAction btn btn-primary mr-1 mb-1" type="submit" name="action_send" >
+                         Re-send Verification
+                     </button>
+                  </div> 
+              </fieldset>
+          </form>
+          
+       {% endif %} 
+       <h2>Change E-mail Address</h2>
+        {% if form.errors %} 
+            {% for field in form %} 
+                {% for error in field.errors %} 
+                    <div class="alert alert-outline-danger mb-1"> 
+                        <strong>{{ error|escape }}</strong> </div> 
+                {% endfor %} 
+            {% endfor %} 
+            {% for error in form.non_field_errors %} 
+                <div class="alert alert-outline-danger mb-1"> 
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %} 
+        {% endif %}
+       <form method="post" action="{% url 'account_email' %}" class="add_email"> 
+           {% csrf_token %} 
+           <div class="form-group basic">
+              <div class="input-wrapper">
+                  <label class="label" for="emailchange1">Email address</label>
+                  {% render_field form.email|add_class:"form-control" id="emailchange1" placeholder="Enter the new E-mail address..." %}
+                <i class="clear-input"><ion-icon name="close-circle"></ion-icon></i>
+                            </div>
+                        </div>
+
+   
+                        <div class="form-group basic">
+                            <button type="submit" class="btn btn-primary btn-block btn-lg">Change Email</button>
+                        </div>
+         </form>
+         </div>
+       {% endblock body %} 
