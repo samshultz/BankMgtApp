@@ -1,6 +1,14 @@
 from django.shortcuts import render
 from allauth.account.forms import ChangePasswordForm
+from allauth.account.views import PasswordChangeView 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
-# Create your views here.
+@login_required
 def profile(request):
     return render(request, "account/profile.html", {"form": ChangePasswordForm})
+
+
+class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
+    success_url = reverse_lazy("profile")
