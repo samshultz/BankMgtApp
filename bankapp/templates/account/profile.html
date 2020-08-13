@@ -71,13 +71,6 @@
             </div>
         </a>
     </li>
-    <li>
-        <a href="" class="item" data-toggle="modal" data-target="#logoutDialog">
-            <div class="in">
-                <div>Logout</div>
-            </div>
-        </a>
-    </li>
 </ul>
 
 <div class="listview-title mt-1">Security</div>
@@ -103,12 +96,12 @@
         </div>
     </li>
     <li>
-        <form action="{% url 'user_sessions:session_delete_other' %}" method="post"></form>
-        <a href="" class="item">
+      <form method="post" action="{% url 'user_sessions:session_delete_other' %}">
+            {% csrf_token %}
             <div class="in">
                 <div><input type="submit" class="btn btn-primary" value="Log out all devices"></div>
             </div>
-        </a>
+        </form>
     </li>
 </ul>
 
@@ -118,5 +111,4 @@
 {% include "./partials/__emailChangeForm.html" with form=email_form csrf_token=csrf_token only %}
 {% include "./partials/__confirmDialog.html" only %}
 {% include "./partials/__updateEmailDialog.html" with user=request.user only %}
-{% include "./partials/__logoutDialog.html" with csrf_token=csrf_token only %}
 {% endblock body %}
