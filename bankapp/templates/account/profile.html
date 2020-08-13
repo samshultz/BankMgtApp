@@ -71,6 +71,13 @@
             </div>
         </a>
     </li>
+       <li>
+        <a class="item" data-toggle="modal" data-target="#logoutDialog">
+            <div class="in">
+                <div>Logout</div>
+            </div>
+        </a>
+    </li>
 </ul>
 
 <div class="listview-title mt-1">Security</div>
@@ -107,7 +114,10 @@
 
 {% include "../bankapp/partials/__bottom_menu.html" %}
 {% include "../bankapp/partials/__sidebar.html" %}
+
 {% include "./partials/__accessPullUp.html" with form=form csrf_token=csrf_token only %}
+{% include "./partials/__logoutDialog.html" with csrf_token=csrf_token only %}
+
 {% include "./partials/__emailChangeForm.html" with form=email_form csrf_token=csrf_token only %}
 {% include "./partials/__confirmDialog.html" only %}
 {% include "./partials/__updateEmailDialog.html" with user=request.user only %}
