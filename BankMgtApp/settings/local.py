@@ -10,3 +10,5 @@ DATABASES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+GEOIP_PATH = r"C:\Users\Samsh\Desktop\Django Projects\BankMgtApp\BankMgtApp\settings\geoipupdate"

@@ -11,6 +11,8 @@ admin.site.login = login_required(admin.site.login)
 def homepage(request):
     return render(request, "index.html", {})
 
+# def logout_from_all_sessions(request):
+#     request.user.session_set.all().delete()
 
 urlpatterns = [
     # path(r'', include(tf_urls)),
@@ -19,7 +21,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', profile, name="profile"),
     path('admin/', admin.site.urls),
-    
+    path(r'', include('user_sessions.urls', 'user_sessions')),
+
 
     path('', homepage, name="homepage"),
 ]

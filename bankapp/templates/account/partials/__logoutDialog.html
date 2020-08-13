@@ -1,0 +1,26 @@
+<!-- Dialog Block Button -->
+<div class="modal fade dialogbox" id="logoutDialog" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Logout</h5>
+            </div>
+            <div class="modal-body">
+                Please, Confirm you want to logout.
+            </div>
+            <div class="modal-footer">
+                <div class="btn-list">
+                    <a href="#" class="btn btn-text-primary btn-block" data-dismiss="modal">CANCEL</a>
+                    <form action="{% url 'account_logout' %}" method="post">
+                        {% csrf_token %}
+                        {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                        {% endif %}
+                        <input type="submit" class="btn btn-text-danger btn-block" value="LOGOUT">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- * Dialog Block Button -->

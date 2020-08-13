@@ -1,6 +1,6 @@
 import os
 from django.contrib.messages import constants as messages
-
+from django.urls import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(os.path.join(__file__, os.pardir))))
 
@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    # 'django.contrib.sessions',
+    'user_sessions',
     'django.contrib.messages',
     'django.contrib.sites',
     'django.contrib.staticfiles',
@@ -58,7 +59,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.contrib.sessions.middleware.SessionMiddleware',
+    'user_sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -168,3 +170,9 @@ MESSAGE_TAGS = {
 }
 
 # LOGIN_URL = 'two_factor:login'
+
+# Django User Sessions Settings
+SESSION_ENGINE = 'user_sessions.backends.db'
+
+LOGOUT_REDIRECT_URL = "/"
+SILENCED_SYSTEM_CHECKS = ['admin.E410']
