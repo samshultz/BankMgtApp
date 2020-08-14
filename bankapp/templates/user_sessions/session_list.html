@@ -54,7 +54,7 @@
                         <td>
                             <form action="{% url 'user_sessions:session_delete' object.pk %}" method="post">
                                 {% csrf_token %}
-                                <button type="button" class="btn btn-outline-danger">End Session</button>
+                                <button type="submit" class="btn btn-outline-danger">End Session</button>
                             </form>
                         </td>
                     </tr>
