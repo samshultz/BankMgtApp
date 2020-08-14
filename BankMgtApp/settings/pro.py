@@ -17,3 +17,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'taiwogabrielsamuel@gmail.com'
 EMAIL_HOST_PASSWORD = 'mcwptkjuzwqrmivn'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
+GEOIP_PATH = os.path.join(BASE_DIR, 'geoipupdate')
