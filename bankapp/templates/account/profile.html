@@ -103,6 +103,13 @@
         </div>
     </li>
     <li>
+        <a href="{% url 'user_sessions:session_list' %}" class="item">
+            <div class="in">
+                <div>Device Management</div>
+            </div>
+        </a>
+    </li>
+    <li>
       <form method="post" action="{% url 'user_sessions:session_delete_other' %}">
             {% csrf_token %}
             <div class="in">

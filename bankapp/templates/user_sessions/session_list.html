@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% load user_sessions %}
+
+{% block title %}
+  Where you're currently logged in - {{ block.super }}
+{% endblock title %}
+
+{% block header %}
+  <!-- App Header -->
+  <div class="appHeader no-border">
+    <div class="left">
+        <a href="javascript:;" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">Active Sessions </div>
+    <div class="right">
+    </div>
+</div>
+<!-- * App Header -->
+{% endblock header %}
+
+{% block body %}
+<div class="section full mt-1 mb-2">
+    <div class="section-title">Active Sessions</div>
+    <div class="content-header mb-05">
+        Devices Currently logged in to your account
+    </div>
+    <div class="wide-block p-0">
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Location</th>
+                        <th scope="col">Device</th>
+                        <th scope="col">Last Activity</th>
+                        <th scope="col">End Session?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for object in object_list %}
+                    <tr>
+                        <th scope="row">{{ object.ip|location|default_if_none:"Unknown"|safe }}<span class="badge badge-info">{{ object.ip }}</span></th>
+                        <td>{{ object.user_agent|device|default_if_none:"Unknown"|safe }}</td>
+                        <td>
+                            {% if object.session_key == session_key %}
+                                {{ object.last_activity|timesince }} ago (this session)
+                            {% else %}
+                                {{ object.last_activity|timesince }} ago
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form action="{% url 'user_sessions:session_delete' object.pk %}" method="post">
+                                {% csrf_token %}
+                                <button type="button" class="btn btn-outline-danger">End Session</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            {% if object_list.count > 1 %}
+            <div class="section mt-2">
+                <div class="card text-center">
+                    
+                    <div class="card-body">
+                        <form method="post" action="{% url 'user_sessions:session_delete_other' %}">
+                            {% csrf_token %}
+                            <p class="card-text">Click this button to log out of all devices except this one.</p>
+                            <button type="submit" class="btn btn-default btn-primary">Logout of other devices</button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+            {% endif %}
+            
+        </div>
+
+    </div>
+</div>
+{% endblock body %}
