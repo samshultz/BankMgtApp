@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+  2FA
+{% endblock title %}
+
+{% block header %}
+  <!-- App Header -->
+  <div class="appHeader">
+    <div class="left">
+        <a href="#" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle">
+        2 Factor Authentication
+    </div>
+    <div class="right">
+    </div>
+</div>
+<!-- * App Header -->
+{% endblock header %}
+
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form.otp_token.label }}:
+    {{ form.otp_token }}
+  
+    <button type="submit">
+      Authenticate
+    </button>
+  </form>
+{% endblock body %}

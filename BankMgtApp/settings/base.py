@@ -49,9 +49,11 @@ INSTALLED_APPS = [
     # Configure the django-otp package.
     'django_otp',
     'django_otp.plugins.otp_totp',
+    'django_otp.plugins.otp_email',
     'django_otp.plugins.otp_static',
 
     # Enable two-factor auth.
+    'OTP_Auth',
     'allauth_2fa',
     'widget_tweaks',
 
@@ -160,7 +162,7 @@ ACCOUNT_FORMS = {
 }
 
 # Set the allauth adapter to be the 2FA adapter.
-ACCOUNT_ADAPTER = 'allauth_2fa.adapter.OTPAdapter'
+ACCOUNT_ADAPTER = 'OTP_Auth.adapter.adapter_choice'
 
 # Messages settings
 MESSAGE_TAGS = { 

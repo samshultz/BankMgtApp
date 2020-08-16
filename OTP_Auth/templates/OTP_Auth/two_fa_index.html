@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Select your preferred method
+{% endblock title %}
+
+{% block body %}
+  <ul>
+      <li>use Barcode <a href="{% url 'two-factor-setup' %}">press this</a></li>
+      <li>use email <a href="{% url 'email_two_factor' %}">press this</a></li>
+  </ul>
+{% endblock body %}
