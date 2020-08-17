@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Here are your backup tokens
+  Backup tokens
 {% endblock title %}
 
 
@@ -24,25 +24,23 @@
 
 {% block body %}
     {% if backup_tokens %}
-    {% if reveal_tokens %}
-    <ul>
-        {% for token in backup_tokens %}
-        <li>{{ token.token }}</li>
-        {% endfor %}
-    </ul>
+        {% if reveal_tokens %}
+        <ul class="listview simple-listview mt-5">
+            {% for token in backup_tokens %}
+                <li>{{ token.token }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            Backup tokens have been generated, but are not revealed here for security reasons. Press the button below to generate new ones.
+        {% endif %}
     {% else %}
-    Backup tokens have been generated, but are not revealed here for security reasons. Press the button below to generate new ones.
-    {% endif %}
-    {% else %}
-    No tokens. Press the button below to generate some.'
+        No tokens. Press the button below to generate some.'
     {% endif %}
 
     <form method="post">
-    {% csrf_token %}
-    <button type="submit">
-    Generate backup tokens
-    </button>
+        {% csrf_token %}
+        <button class="btn btn-outline-success" type="submit">Generate backup tokens</button>
+        <a class="btn btn-outline-danger" href="{% url 'two-factor-remove' %}">Disable Two Factor</a>
     </form>
 
-    <a href="{% url 'two-factor-remove' %}">Disable Two Factor</a>
 {% endblock body %}

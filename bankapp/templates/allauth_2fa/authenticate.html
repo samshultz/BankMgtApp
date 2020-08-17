@@ -1,35 +1,62 @@
 {% extends "base.html" %}
-
+{% load widget_tweaks %}
 {% block title %}
-  2FA
+2FA
 {% endblock title %}
 
 {% block header %}
-  <!-- App Header -->
-  <div class="appHeader">
-    <div class="left">
-        <a href="#" class="headerButton goBack">
-            <ion-icon name="chevron-back-outline"></ion-icon>
-        </a>
-    </div>
-    <div class="pageTitle">
-        2 Factor Authentication
-    </div>
-    <div class="right">
-    </div>
+<!-- App Header -->
+<div class="appHeader">
+	<div class="left">
+		<a href="#" class="headerButton goBack">
+			<ion-icon name="chevron-back-outline"></ion-icon>
+		</a>
+	</div>
+	<div class="pageTitle">
+		2 Factor Authentication
+	</div>
+	<div class="right">
+	</div>
 </div>
 <!-- * App Header -->
 {% endblock header %}
 
 {% block body %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    {{ form.otp_token.label }}:
-    {{ form.otp_token }}
-  
-    <button type="submit">
-      Authenticate
-    </button>
-  </form>
+<div class="section mt-2 text-center">
+	<h1>One Time Password</h1>
+	<h4>Enter the Code emailed to you</h4>
+</div>
+<div class="section mt-2 mb-5 p-3">
+	{% if form.errors %}
+		{% for field in form %}
+			{% for error in field.errors %}
+				<div class="alert alert-outline-danger mb-1">
+					<strong>{{ error|escape }}</strong>
+				</div>
+			{% endfor %}
+		{% endfor %}
+		{% for error in form.non_field_errors %}
+			<div class="alert alert-outline-danger mb-1">
+				<strong>{{ error|escape }}</strong>
+			</div>
+		{% endfor %}
+	{% endif %}
+	<form method="POST" action="">
+		{% csrf_token %}
+		<div class="form-group basic">
+			<div class="input-wrapper">
+				<label class="label" for="otptoken">{{ form.otp_token.label }}</label>
+				{% render_field form.otp_token|add_class:"form-control" autofocus="" id="otptoken" placeholder="Enter your OTP Token" %}
+				<i class="clear-input">
+					<ion-icon name="close-circle"></ion-icon>
+				</i>
+			</div>
+		</div>
+
+		<div class="form-button-group">
+			<button type="submit" class="btn btn-primary btn-block btn-lg">Authenticate</button>
+		</div>
+
+	</form>
+</div>
 {% endblock body %}
