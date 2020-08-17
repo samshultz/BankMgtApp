@@ -17,8 +17,8 @@ def homepage(request):
 urlpatterns = [
     # path(r'', include(tf_urls)),
     re_path("^two_factor/backup_tokens/?$", TwoFactorBackupTokens.as_view(), name="two-factor-backup-tokens"),
-    path('', include('allauth_2fa.urls')),
     path('', include('OTP_Auth.urls')),
+    path('', include('allauth_2fa.urls')),
     path('accounts/password/change/', CustomPasswordChangeView.as_view(), name="account_change_password"),
     path('accounts/', include('allauth.urls')),
     path('accounts/profile/', profile, name="profile"),
