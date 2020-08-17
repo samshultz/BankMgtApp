@@ -2,6 +2,7 @@ from django.shortcuts import render
 from allauth.account.forms import ChangePasswordForm, AddEmailForm
 from allauth.account.views import PasswordChangeView 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.base import TemplateView
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 
@@ -12,3 +13,7 @@ def profile(request):
 
 class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     success_url = reverse_lazy("profile")
+
+
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = "bankapp/dashboard.html"
