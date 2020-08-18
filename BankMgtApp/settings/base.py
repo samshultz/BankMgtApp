@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'OTP_Auth',
     'allauth_2fa',
     'widget_tweaks',
-
+    'django_extensions',
 
 ]
 
