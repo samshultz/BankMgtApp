@@ -1,19 +1,59 @@
 {% extends "base.html" %}
-
+{% load widget_tweaks %}
 {% block title %}
   Email OTP
 {% endblock title %}
 
-{% block body %}
-  <h1>An email has been sent to you</h1>
+{% block body-class %}
+  bg-light
+{% endblock body-class %}
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    {{ form.token.label }}: {{ form.token }}
-  
-    <button type="submit">
-      Verify
-    </button>
-  </form>
+{% block header %}
+   <!-- App Header -->
+   <div class="appHeader no-border">
+    <div class="left">
+        <a href="javascript:;" class="headerButton goBack">
+            <ion-icon name="chevron-back-outline"></ion-icon>
+        </a>
+    </div>
+    <div class="pageTitle"></div>
+    <div class="right">
+    </div>
+</div>
+<!-- * App Header -->
+{% endblock header %}
+{% block body %}
+
+  <div class="section mt-2 text-center">
+    <h1>Enter OTP Code</h1>
+    <h4>Enter 6 digit Email verification code sent to you</h4>
+  </div>
+  <div class="section mt-2 mb-5 p-3">
+      {% if form.errors %}
+        {% for field in form %}
+          {% for error in field.errors %}
+            <div class="alert alert-outline-danger mb-1">
+              <strong>{{ error|escape }}</strong>
+            </div>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <div class="alert alert-outline-danger mb-1">
+            <strong>{{ error|escape }}</strong>
+          </div>
+        {% endfor %}
+      {% endif %}
+    <form action="" method="post">
+      {% csrf_token %}
+      
+        <div class="form-group">
+            {% render_field form.token|add_class:"form-control verification-input" id="smscode" placeholder="••••••" maxlength="6" %}
+        </div>
+
+        <div class="form-button-group">
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Verify</button>
+        </div>
+
+    </form>
+  </div>
 {% endblock body %}

@@ -4,9 +4,47 @@
   Select your preferred method
 {% endblock title %}
 
+{% block header %}
+  <!-- App Header -->
+  <div class="appHeader">
+    <div class="left">
+      <a href="#" class="headerButton goBack">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </a>
+    </div>
+    <div class="pageTitle">
+      2 Factor Authentication
+    </div>
+    <div class="right">
+    </div>
+  </div>
+  <!-- * App Header -->
+{% endblock header %}
 {% block body %}
-  <ul>
-      <li>use Barcode <a href="{% url 'two-factor-setup' %}">press this</a></li>
-      <li>use email <a href="{% url 'email_two_factor' %}">press this</a></li>
-  </ul>
+  <div class="section mt-2">
+    <div class="card">
+      <div class="card-body">
+            <h4 class="card-title font-weight-bold">Email</h4>
+            <p class="card-text"><span class="text-success font-weight-bold">Recommended</span> &#8226; Use Email to receive verification codes. An OTP is sent to your registered Email address.</p>  
+        </div>
+        <div class="card-footer text-right">
+          <a href="{% url 'email_two_factor' %}" class="btn btn-primary">Use Email</a>
+        </div>
+    </div>
+  </div>
+
+  <div class="section mt-2">
+    <div class="card">
+        
+        <div class="card-body">
+            <h4 class="card-title font-weight-bold">Authentication App</h4>
+            <p class="card-text">Use an app like Google Authenticator or Duo 
+              Mobile to generate verification codes for more protection.
+            </p>  
+        </div>
+        <div class="card-footer text-right">
+          <a href="{% url 'two-factor-setup' %}" class="btn btn-primary">Use Authentication App</a>
+        </div>
+    </div>
+  </div>
 {% endblock body %}

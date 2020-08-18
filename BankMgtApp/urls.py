@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include('allauth_2fa.urls')),
     path('accounts/password/change/', CustomPasswordChangeView.as_view(), name="account_change_password"),
     path('accounts/', include('allauth.urls')),
+    path('', include('bankapp.urls', 'bankapp')),
     path('accounts/profile/', profile, name="profile"),
     path('admin/', admin.site.urls),
     path(r'', include('user_sessions.urls', 'user_sessions')),
