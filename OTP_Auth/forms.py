@@ -1,8 +1,13 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
+from allauth.account.forms import SignupForm
+
 from django_otp.forms import OTPAuthenticationFormMixin
 from django_otp.plugins.otp_email.models import EmailDevice
+
+from .models import Profile
+
 
 class EmailDeviceForm(forms.Form):
     token = forms.CharField(
@@ -53,3 +58,12 @@ class EmailDeviceForm(forms.Form):
 #         # Delete TOTP device.
 #         device = TOTPDevice.objects.get(user=self.user)
 #         device.delete()
+
+
+class CustomSignupForm(SignupForm):
+    phonenumber = forms.CharField(max_length=14, label="Phone Number")
+
+    def signup(self, request, user):
+        user.profile.phonenumber = self.cleaned_data['phonenumber']
+        user.save()
+        return user
